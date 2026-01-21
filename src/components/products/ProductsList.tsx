@@ -2,10 +2,12 @@ import { useGetProductsQuery } from "@/services/api/get-products"
 import ProductCard from "./ProductCard"
 import ProductListLoader from "../loaders/ProductListLoader"
 import { PaginationComponent } from "../shared/Pagination"
-import { PackageOpen } from "lucide-react"
+import {  PackageOpen, Plus } from "lucide-react"
 import { usePagination, useSorting, type SortConfig } from "@/hooks"
 import type { Product } from "@/services/types/products"
 import Sorting from "../shared/Sorting"
+import { Button } from "../ui/button"
+import { Link } from "react-router"
 
 const PRODUCT_SORT_CONFIGS: SortConfig<Product>[] = [
   {
@@ -84,8 +86,14 @@ const ProductsList = () => {
 
   return (
     <div className="space-y-6 p-4">
-      <div>
+      <div className="flex items-center justify-between">
         <Sorting sort={currentSort} onSortChange={handleSortChange} />
+        <Button variant="outline">
+          <Link to="/products/create" className="flex items-center gap-2">
+            <Plus className="size-4" />
+            Create Product
+          </Link>
+        </Button>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

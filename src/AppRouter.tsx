@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router"
 import Home from "./components/layout/Home"
 import AppLayout from "./components/layout/AppLayout"
 import ProductDetails from "./components/products/ProductDetails"
+import CreateProductPage from "./components/pages/CreateProductPage"
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -10,6 +11,8 @@ const AppRouter = () => {
 
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<div>Cart</div>} />
+            <Route path="/products/create" element={<CreateProductPage />} />
         </Route>
     </Routes>
     </BrowserRouter>
