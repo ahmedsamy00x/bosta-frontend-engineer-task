@@ -1,17 +1,26 @@
-import { Eye, ShoppingCart } from "lucide-react"
+import { useState } from "react"
+import { Eye, ShoppingCart, Minus, Plus } from "lucide-react"
 import type { Product } from "@/services/types/products"
 import { Button } from "../ui/button"
 import { useNavigate } from "react-router"
+import { useCartStore } from "@/services/store/CartStore"
 
 interface ProductCardProps {
   product: Product
-  onAddToCart?: () => void
 }
 
-const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
+  const [quantity, setQuantity] = useState(1)
+  const { addToCart } = useCartStore()
   const navigate = useNavigate()
+
   const handleViewDetails = () => {
     navigate(`/product/${product.id}`)
+  }
+
+  const handleAddToCart = () => {
+    addToCart({ product, quantity })
+    setQuantity(1) // Reset quantity after adding
   }
   return (
     <div className="group bg-card rounded-xl overflow-hidden border border-border/50 hover:border-border hover:shadow-lg transition-all duration-300">
@@ -34,7 +43,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         </span>
 
         {/* Title */}
-        <h3 className="text-sm font-medium line-clamp-2 min-h-10 leading-tight text-foreground/90">
+        <h3 className="text-sm font-medium line-clamp-2 min-h-20 leading-tight text-foreground/90">
           {product.title}
         </h3>
 
@@ -44,6 +53,33 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           <span className="text-xl font-semibold tracking-tight">
             {product.price.toFixed(2)}
           </span>
+        </div>
+
+        {/* Quantity Control */}
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-muted-foreground">Qty:</span>
+          <div className="flex items-center border border-border rounded-lg">
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              className="rounded-r-none"
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              disabled={quantity <= 1}
+            >
+              <Minus className="size-3" />
+            </Button>
+            <span className="w-8 text-center text-sm font-medium">
+              {quantity}
+            </span>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              className="rounded-l-none"
+              onClick={() => setQuantity(quantity + 1)}
+            >
+              <Plus className="size-3" />
+            </Button>
+          </div>
         </div>
 
         {/* Action Buttons */}
@@ -61,7 +97,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
             variant="default"
             size="sm"
             className="flex-1 gap-1.5"
-            onClick={onAddToCart}
+            onClick={handleAddToCart}
           >
             <ShoppingCart className="size-3.5" />
             Add

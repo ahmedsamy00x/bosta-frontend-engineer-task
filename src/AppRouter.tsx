@@ -3,6 +3,7 @@ import Home from "./components/layout/Home"
 import AppLayout from "./components/layout/AppLayout"
 import ProductDetails from "./components/products/ProductDetails"
 import CreateProductPage from "./components/pages/CreateProductPage"
+import CartPage from "./components/pages/CartPage"
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -11,7 +12,7 @@ const AppRouter = () => {
 
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<div>Cart</div>} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/products/create" element={<CreateProductPage />} />
         </Route>
     </Routes>

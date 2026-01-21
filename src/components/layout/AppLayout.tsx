@@ -5,7 +5,7 @@ const AppLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container mx-auto max-w-4xl mt-24 px-4">
+      <main className="flex-1 container mx-auto max-w-4xl mt-12 px-4">
         <Outlet />
       </main>
       {/* Optional: Add footer here */}
