@@ -1,9 +1,16 @@
+import AppRouter from "./AppRouter";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient();
+    
 export function App() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="font-medium">Hello World</div>
-    </div>
-  )
+    return (
+        <QueryClientProvider client={queryClient}>
+          <AppRouter />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+    )
 }
 
-export default App
+export default App;
