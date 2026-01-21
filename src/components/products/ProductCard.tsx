@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { Eye, ShoppingCart, Heart } from "lucide-react"
+import { Eye, ShoppingCart } from "lucide-react"
 import type { Product } from "@/services/types/products"
 import { Button } from "../ui/button"
 import { useNavigate } from "react-router"
@@ -10,7 +9,6 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
-  const [isWishlisted, setIsWishlisted] = useState(false)
   const navigate = useNavigate()
   const handleViewDetails = () => {
     navigate(`/product/${product.id}`)
@@ -25,17 +23,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           className="h-full w-full object-contain p-6 transition-transform duration-300 group-hover:scale-105"
         />
 
-        {/* Quick Action - Wishlist */}
-        <Button
-          variant="ghost"
-          size="icon-sm"
-          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm hover:bg-background"
-          onClick={() => setIsWishlisted(!isWishlisted)}
-        >
-          <Heart
-            className={isWishlisted ? "fill-destructive text-destructive" : ""}
-          />
-        </Button>
+        
       </div>
 
       {/* Content Section */}

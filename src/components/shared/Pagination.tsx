@@ -32,12 +32,10 @@ export function PaginationComponent({
   onPageChange, 
   onPerPageChange 
 }: PaginationComponentProps) {
-  // Calculate pagination metadata
   const totalPages = Math.ceil(total / per_page)
   const startIndex = (page - 1) * per_page + 1
   const endIndex = Math.min(page * per_page, total)
   
-  // Boundary checks
   const isFirstPage = page <= 1
   const isLastPage = page >= totalPages
   
