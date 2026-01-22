@@ -4,6 +4,7 @@ import { Input } from "../ui/input"
 import { Field, FieldLabel, FieldError } from "../ui/field"
 import { Button } from "../ui/button"
 import { useCreateProductMutation } from "@/services/api/products/create-product"
+import { toast } from "sonner"
 
 const CreateProductForm = () => {
     const { mutate, isPending } = useCreateProductMutation()
@@ -32,8 +33,8 @@ const CreateProductForm = () => {
                     ...values,
                 })
                 formik.resetForm()
-            } catch (error) {
-                console.error(error)
+            } catch (error: Error | unknown) {
+                toast.error((error as Error).message || "Failed to create product")
             }
         },
     })
