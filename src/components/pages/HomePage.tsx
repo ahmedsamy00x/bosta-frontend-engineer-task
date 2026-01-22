@@ -1,6 +1,6 @@
 import ProductsList from "../products/ProductsList"
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="container mx-auto max-w-7xl">
         <ProductsList />
@@ -8,4 +8,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage
