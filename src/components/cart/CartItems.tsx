@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router"
-import { ArrowLeft, ShoppingBag } from "lucide-react"
-import { useCartStore } from "@/services/store/CartStore"
+import { ArrowLeft } from "lucide-react"
+import { useCartStore } from "@/stores/useCartStore"
 import { Button } from "../ui/button"
 import CartItem from "./CartItem"
+import Empty from "../shared/Empty"
 
 const CartItems = () => {
   const { cart } = useCartStore()
@@ -10,19 +11,12 @@ const CartItems = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 px-4">
-        <ShoppingBag className="size-16 text-muted-foreground/50 mb-4" />
-        <h3 className="text-lg font-semibold text-foreground mb-2">
-          Your cart is empty
-        </h3>
-        <p className="text-sm text-muted-foreground mb-6">
-          Add some products to get started
-        </p>
-        <Button variant="outline" onClick={() => navigate("/")}>
-          <ArrowLeft className="size-4" />
-          Continue Shopping
-        </Button>
-      </div>
+      <Empty message="Your cart is empty" description="Check back later for new items">
+          <Button variant="outline" className="cursor-pointer" onClick={() => navigate("/")}>
+            <ArrowLeft className="size-4" />
+            Continue Shopping
+          </Button> 
+        </Empty>
     )
   }
 

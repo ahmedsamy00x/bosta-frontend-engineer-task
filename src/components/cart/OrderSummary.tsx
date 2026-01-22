@@ -1,5 +1,5 @@
 import { Lock, Truck } from "lucide-react"
-import { useCartStore } from "@/services/store/CartStore"
+import { useCartStore } from "@/stores/useCartStore"
 import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 
@@ -24,7 +24,6 @@ const OrderSummary = () => {
     <div className="bg-muted/30 rounded-2xl p-6 space-y-6 lg:sticky lg:top-6">
       <h2 className="text-lg font-semibold">Order Summary</h2>
 
-      {/* Summary Lines */}
       <div className="space-y-3">
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Subtotal</span>

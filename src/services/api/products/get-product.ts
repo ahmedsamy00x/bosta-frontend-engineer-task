@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { BASE_URL } from "../constants/CONSTANTS"
-import type { Product } from "../types/products"
+import { BASE_URL } from "../../constants/CONSTANTS"
+import type { Product } from "../../types/products"
 
 const getProduct = async (id: string): Promise<Product> => {
   const response = await fetch(`${BASE_URL}/products/${id}`, {

@@ -1,11 +1,10 @@
-import { useCartStore } from "@/services/store/CartStore"
+import { useCartStore } from "@/stores/useCartStore"
 import CartItems from "../cart/CartItems"
 import OrderSummary from "../cart/OrderSummary"
 
 const CartPage = () => {
   const { cart } = useCartStore()
 
-  // Render centered empty state when cart is empty
   if (cart.length === 0) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">

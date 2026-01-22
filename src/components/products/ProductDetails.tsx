@@ -1,9 +1,10 @@
 import { useParams, useNavigate } from "react-router"
 import { ArrowLeft, ShoppingCart } from "lucide-react"
-import { useGetProductQuery } from "@/services/api/get-product"
+import { useGetProductQuery } from "@/services/api/products/get-product"
 import { Button } from "../ui/button"
 import { Badge } from "../ui/badge"
 import { ProductDetailLoader } from "../loaders/ProductDetailLoader"
+import ErrorMessage from "../shared/ErrorMessage"
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -17,20 +18,13 @@ const ProductDetails = () => {
 
   if (error || !product) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 px-4">
-        <div className="text-center space-y-3">
-          <div className="text-destructive text-lg font-semibold">
-            Failed to load product
-          </div>
-          <p className="text-sm text-muted-foreground">
-            {error?.message || "Product not found"}
-          </p>
-          <Button variant="outline" onClick={() => navigate("/")}>
-            <ArrowLeft className="size-4" />
-            Back to Products
-          </Button>
-        </div>
-      </div>
+      <ErrorMessage error={error}>
+        <Button variant="outline" onClick={() => navigate("/")}>
+          <ArrowLeft className="size-4" />
+          Back to Products
+        </Button>
+      </ErrorMessage>
+       
     )
   }
 
@@ -85,7 +79,7 @@ const ProductDetails = () => {
           </div>
 
           <div className="pt-4">
-            <Button size="lg" className="w-full sm:w-auto gap-2">
+            <Button size="lg" className="w-full sm:w-auto gap-2 cursor-pointer">
               <ShoppingCart className="size-5" />
               Add to Cart
             </Button>

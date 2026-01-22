@@ -1,6 +1,6 @@
 import { Minus, Plus, Trash2 } from "lucide-react"
 import type { Product } from "@/services/types/products"
-import { useCartStore } from "@/services/store/CartStore"
+import { useCartStore } from "@/stores/useCartStore"
 import { Button } from "../ui/button"
 
 interface CartItemProps {

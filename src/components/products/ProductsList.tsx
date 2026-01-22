@@ -1,13 +1,15 @@
-import { useGetProductsQuery } from "@/services/api/get-products"
+import { useGetProductsQuery } from "@/services/api/products/get-products"
 import ProductCard from "./ProductCard"
 import ProductListLoader from "../loaders/ProductListLoader"
 import { PaginationComponent } from "../shared/Pagination"
-import {  PackageOpen, Plus } from "lucide-react"
+import {  Plus } from "lucide-react"
 import { usePagination, useSorting, type SortConfig } from "@/hooks"
 import type { Product } from "@/services/types/products"
 import Sorting from "../shared/Sorting"
 import { Button } from "../ui/button"
 import { Link } from "react-router"
+import ErrorMessage from "../shared/ErrorMessage"
+import Empty from "../shared/Empty"
 
 const PRODUCT_SORT_CONFIGS: SortConfig<Product>[] = [
   {
@@ -57,36 +59,19 @@ const ProductsList = () => {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 px-4">
-        <div className="text-center space-y-3">
-          <div className="text-destructive text-lg font-semibold">
-            Failed to load products
-          </div>
-          <p className="text-sm text-muted-foreground">
-            {error.message || "An unexpected error occurred"}
-          </p>
-        </div>
-      </div>
+      <ErrorMessage error={error} />
     )
   }
 
   if (isEmpty) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 px-4">
-        <PackageOpen className="size-16 text-muted-foreground/50 mb-4" />
-        <h3 className="text-lg font-semibold text-foreground mb-2">
-          No products found
-        </h3>
-        <p className="text-sm text-muted-foreground">
-          Check back later for new items
-        </p>
-      </div>
+      <Empty />
     )
   }
 
   return (
     <div className="space-y-6 p-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-start gap-y-4 md:items-center justify-between">
         <Sorting sort={currentSort} onSortChange={handleSortChange} />
         <Button variant="outline">
           <Link to="/products/create" className="flex items-center gap-2">

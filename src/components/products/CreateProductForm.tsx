@@ -3,7 +3,7 @@ import { useFormik } from "formik"
 import { Input } from "../ui/input"
 import { Field, FieldLabel, FieldError } from "../ui/field"
 import { Button } from "../ui/button"
-import { useCreateProductMutation } from "@/services/api/create-product"
+import { useCreateProductMutation } from "@/services/api/products/create-product"
 
 const CreateProductForm = () => {
     const { mutate, isPending } = useCreateProductMutation()

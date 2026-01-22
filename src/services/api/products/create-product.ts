@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { BASE_URL } from "../constants/CONSTANTS";
-import type { Product } from "../types/products";
+import { BASE_URL } from "../../constants/CONSTANTS";
+import type { Product } from "../../types/products";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 

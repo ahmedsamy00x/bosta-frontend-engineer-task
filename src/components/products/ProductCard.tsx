@@ -3,7 +3,7 @@ import { Eye, ShoppingCart, Minus, Plus } from "lucide-react"
 import type { Product } from "@/services/types/products"
 import { Button } from "../ui/button"
 import { useNavigate } from "react-router"
-import { useCartStore } from "@/services/store/CartStore"
+import { useCartStore } from "@/stores/useCartStore"
 
 interface ProductCardProps {
   product: Product
@@ -62,7 +62,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Button
               variant="ghost"
               size="icon-xs"
-              className="rounded-r-none"
+              className="rounded-r-none cursor-pointer"
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
               disabled={quantity <= 1}
             >
@@ -74,7 +74,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Button
               variant="ghost"
               size="icon-xs"
-              className="rounded-l-none"
+              className="rounded-l-none cursor-pointer"
               onClick={() => setQuantity(quantity + 1)}
             >
               <Plus className="size-3" />
@@ -87,7 +87,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 gap-1.5"
+            className="flex-1 gap-1.5 cursor-pointer"
             onClick={handleViewDetails}
           >
             <Eye className="size-3.5" />
@@ -96,7 +96,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Button
             variant="default"
             size="sm"
-            className="flex-1 gap-1.5"
+            className="flex-1 gap-1.5 cursor-pointer"
             onClick={handleAddToCart}
           >
             <ShoppingCart className="size-3.5" />

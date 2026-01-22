@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import type { Product } from "../types/products"
+import type { Product } from "@/services/types/products"
 
 interface CartStore {
     cart: {
